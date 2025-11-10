@@ -1,0 +1,31 @@
+name: prometheus-grafana-lab
+services:
+  node-exporter:
+    image: quay.io/prometheus/node-exporter
+    container_name: node-exporter
+    networks:
+      - ironhack
+    ports:
+      - 9100:9100
+  python-exporter:
+    build:
+      context: python_exporter
+      dockerfile: Dockerfile
+    container_name: python-exporter
+    networks:
+      - ironhack
+
+    ports:
+      - 8000:8000
+
+  custom-exporter:
+    container_name: custom-exporter
+    build:
+      context: custom_exporter
+      dockerfile: Dockerfile
+    networks:
+      - ironhack
+    ports:
+      - 8001:8001
+networks:
+  ironhack:
