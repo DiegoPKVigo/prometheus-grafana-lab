@@ -32,11 +32,18 @@ services:
     container_name: prometheus
     image: prom/prometheus
     networks:
-    - ironhack
+      - ironhack
     ports:
       - 9090:9090
     volumes:
       - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    networks:
+      - ironhack
+    ports:
+      - 3000:3000
 
 networks:
   ironhack:
